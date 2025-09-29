@@ -780,21 +780,24 @@ section {
 }
 
 .bandcamp-embed {
-    margin: 3rem 0;
+    margin: 4rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #000;
-    border-radius: 0;
-    padding: 0;
-    border: 2px solid #fff;
+    background: linear-gradient(135deg, #000 0%, #1a1a1a 50%, #000 100%);
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 
-        0 0 0 1px #000,
-        0 0 0 3px #fff,
-        0 20px 40px rgba(0, 0, 0, 0.5);
-    transition: all 0.3s ease;
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        0 20px 40px rgba(0, 0, 0, 0.7),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .bandcamp-embed::before {
@@ -804,37 +807,63 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%);
+    background: 
+        linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.03) 50%, transparent 100%),
+        radial-gradient(circle at center, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
     z-index: 1;
+    pointer-events: none;
+}
+
+.bandcamp-embed::after {
+    content: '♪';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 1.5rem;
+    z-index: 3;
     pointer-events: none;
 }
 
 .bandcamp-embed iframe {
     border: none;
-    border-radius: 0;
-    box-shadow: none;
-    transition: transform 0.3s ease;
+    border-radius: 10px;
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
     position: relative;
     z-index: 2;
-    filter: grayscale(100%) contrast(1.1);
+    filter: grayscale(100%) contrast(1.2) brightness(0.9);
+    width: 100%;
+    height: 100%;
 }
 
 .bandcamp-embed:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px) scale(1.02);
     box-shadow: 
-        0 0 0 1px #000,
-        0 0 0 3px #fff,
-        0 30px 60px rgba(0, 0, 0, 0.6);
+        0 0 0 1px rgba(255, 255, 255, 0.3),
+        0 30px 60px rgba(0, 0, 0, 0.8),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
 .bandcamp-embed:hover iframe {
-    filter: grayscale(0%) contrast(1);
+    filter: grayscale(0%) contrast(1) brightness(1);
     transform: scale(1.01);
+    box-shadow: 
+        0 0 0 1px rgba(255, 255, 255, 0.2),
+        0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.bandcamp-embed:hover::after {
+    color: rgba(255, 255, 255, 0.6);
+    transform: scale(1.1);
 }
 
 /* Words Section */
 .words-section {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
     color: white;
     position: relative;
     overflow: hidden;
@@ -848,9 +877,9 @@ section {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
-        linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.01) 50%, transparent 100%);
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 60%),
+        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 60%),
+        linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.02) 50%, transparent 100%);
     pointer-events: none;
 }
 
@@ -866,7 +895,13 @@ section {
             90deg,
             transparent,
             transparent 98px,
-            rgba(255, 255, 255, 0.02) 100px
+            rgba(255, 255, 255, 0.03) 100px
+        ),
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 98px,
+            rgba(255, 255, 255, 0.01) 100px
         );
     pointer-events: none;
 }
@@ -880,32 +915,40 @@ section {
 .books-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
-    margin-top: 3rem;
+    gap: 1.5rem;
+    margin-top: 4rem;
     position: relative;
     z-index: 2;
     justify-content: center;
     align-items: flex-end;
-    min-height: 400px;
+    min-height: 500px;
+    padding: 2rem;
+    background: 
+        linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%),
+        radial-gradient(circle at center, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
 }
 
 .book-card {
-    background: #000;
-    border-radius: 0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+    border-radius: 8px;
     overflow: hidden;
     transition: all 0.6s ease;
     box-shadow: 
-        0 0 0 1px #fff,
-        0 -10px 20px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        0 0 0 1px rgba(255, 255, 255, 0.2),
+        0 -15px 30px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 0 20px rgba(255, 255, 255, 0.05);
     display: flex;
     flex-direction: column;
-    width: 120px;
-    height: 300px;
+    width: 140px;
+    height: 320px;
     position: relative;
-    margin: 0 5px;
+    margin: 0 8px;
     transform-origin: bottom;
-    border: 1px solid #333;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .book-card:nth-child(1) {
@@ -934,13 +977,14 @@ section {
 }
 
 .book-card:hover {
-    transform: translateY(-15px) rotate(-3deg);
+    transform: translateY(-20px) rotate(-2deg) scale(1.05);
     box-shadow: 
-        0 0 0 2px #fff,
-        0 -20px 40px rgba(0, 0, 0, 0.7),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        0 0 0 2px rgba(255, 255, 255, 0.4),
+        0 -25px 50px rgba(0, 0, 0, 0.8),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 0 30px rgba(255, 255, 255, 0.1);
     z-index: 10;
-    border-color: #fff;
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .book-cover {
@@ -1154,28 +1198,72 @@ section {
 .soundcloud-link {
     border-color: #ff6b6b !important;
     color: #ff6b6b !important;
-    background: linear-gradient(45deg, rgba(255, 107, 107, 0.1), rgba(255, 107, 107, 0.05)) !important;
-    font-weight: 600 !important;
+    background: linear-gradient(45deg, rgba(255, 107, 107, 0.15), rgba(255, 107, 107, 0.08)) !important;
+    font-weight: 700 !important;
     text-transform: uppercase !important;
-    letter-spacing: 1px !important;
+    letter-spacing: 2px !important;
     position: relative !important;
     overflow: hidden !important;
+    font-size: 1.1rem !important;
+    padding: 1rem 2rem !important;
+    border-width: 3px !important;
+    box-shadow: 
+        0 0 0 1px rgba(255, 107, 107, 0.2),
+        0 5px 15px rgba(255, 107, 107, 0.2) !important;
+    animation: pulse-glow 2s ease-in-out infinite !important;
 }
 
 .soundcloud-link::before {
     content: '♪';
     position: absolute;
-    left: 10px;
+    left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    animation: bounce 1s ease-in-out infinite;
+}
+
+.soundcloud-link::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s ease;
+}
+
+.soundcloud-link:hover::after {
+    left: 100%;
 }
 
 .soundcloud-link:hover {
     background: linear-gradient(45deg, #ff6b6b, #ff5252) !important;
     color: white !important;
-    transform: translateY(-3px) scale(1.05) !important;
-    box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4) !important;
+    transform: translateY(-5px) scale(1.08) !important;
+    box-shadow: 
+        0 0 0 2px rgba(255, 107, 107, 0.4),
+        0 20px 40px rgba(255, 107, 107, 0.5) !important;
+    border-color: #ff5252 !important;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { 
+        box-shadow: 
+            0 0 0 1px rgba(255, 107, 107, 0.2),
+            0 5px 15px rgba(255, 107, 107, 0.2);
+    }
+    50% { 
+        box-shadow: 
+            0 0 0 2px rgba(255, 107, 107, 0.4),
+            0 8px 25px rgba(255, 107, 107, 0.4);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(-50%) scale(1); }
+    50% { transform: translateY(-50%) scale(1.2); }
 }
 
 /* Connection lines between platforms */
